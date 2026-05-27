@@ -379,7 +379,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 import {
   TrendingUp, Package, Shield, AlertTriangle, Info,
   Zap, Wheat, HardHat,
@@ -474,7 +474,7 @@ const PRESETS: Preset[] = [
 ];
 
 // ── Reactive State ─────────────────────────────────────────────────────────────
-const selectedPreset = reactive({ id: "green_tech" });
+const selectedPreset = ref("green_tech");
 
 // Use store's conduitConversionRate as grey market seed
 const inputs = reactive({
@@ -487,7 +487,7 @@ const inputs = reactive({
 
 // ── Active Preset ──────────────────────────────────────────────────────────────
 const activePreset = computed(
-  () => PRESETS.find(p => p.id === selectedPreset.id) ?? PRESETS[0]
+  () => PRESETS.find(p => p.id === selectedPreset.value) ?? PRESETS[0]
 );
 
 // ── Core Calculations ──────────────────────────────────────────────────────────
